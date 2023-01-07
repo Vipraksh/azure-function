@@ -72,8 +72,8 @@ jobs :
 
       - name: Run a line script
         run: python first.py
-      - name: Trigger message
-        run: echo $msg
+      # - name: Trigger message
+      #   run: echo $msg
 
       # - name : Run first job     
       #   run: |
