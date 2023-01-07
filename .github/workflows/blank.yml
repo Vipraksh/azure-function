@@ -42,10 +42,10 @@
 name : Testing-Workflow1
 
 on :
-  push : 
-    branches : ["master"]
+  # push : 
+  #   branches : ["master"]
   
-  # workflow_dispatch:
+  workflow_dispatch:
   #   inputs : 
   #     num1 :
   #       description: "Enter a decimal no.: "
