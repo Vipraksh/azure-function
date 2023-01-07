@@ -1,36 +1,95 @@
-# This is a basic workflow to help you get started with Actions
+# # This is a basic workflow to help you get started with Actions
 
-name: CI
+# name: CI
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# # Controls when the workflow will run
+# on:
+#   # Triggers the workflow on push or pull request events but only for the "main" branch
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   build:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v3
+
+#       # Runs a single command using the runners shell
+#       - name: Run a one-line script
+#         run: echo Hello, world!
+
+#       # Runs a set of commands using the runners shell
+#       - name: Run a multi-line script
+#         run: |
+#           echo Add other actions to build,
+#           echo test, and deploy your project.
+
+
+
+
+
+name : Testing-Workflow
+
+on :
+  push : 
+    branches : ["master"]
+  
+  # workflow_dispatch:
+  #   inputs : 
+  #     num1 :
+  #       description: "Enter a decimal no.: "
+  #       required: true
+
+  #     num2 :
+  #       description: "Enter a binary no.: "
+  #       required: true
+
+# env :
+#   msg : I am vipraksh srivastava
+  # d: ${{github.event.inputs.num1}}
+  # b: ${{github.event.inputs.num2}}
+  
+jobs : 
+  job1 : 
+    runs-on : ubuntu-latest
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Run a line script
+        run: python first.py
+      - name: Trigger message
+        run: echo $msg
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # - name : Run first job     
+      #   run: |
+      #    python first.py $d
+      #    python second.py
+
+  # job2 :
+  #   needs : job1
+  #   runs-on : ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v3 
+  #     - uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.8'
+
+  #     - name : Run second job
+  #       run : python second.py $b
+
