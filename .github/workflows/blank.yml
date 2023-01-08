@@ -1,23 +1,23 @@
 name : Testing-Workflow1
 
 on :
-  # push : 
-  #   branches : ["master"]
+  push : 
+    branches : ["master"]
   
-  workflow_dispatch:
-    inputs : 
-      num1 :
-        description: "Enter a no.: "
-        required: true
+  # workflow_dispatch:
+  #   inputs : 
+  #     num1 :
+  #       description: "Enter a no.: "
+  #       required: true
 
       # num2 :
       #   description: "Enter a binary no.: "
       #   required: true
 
-env :
-    file: first.py
-#   msg : I am vipraksh srivastava
-    d: ${{github.event.inputs.num1}}
+# env :
+#     file: first.py
+# #   msg : I am vipraksh srivastava
+#     d: ${{github.event.inputs.num1}}
   # b: ${{github.event.inputs.num2}}
   
 jobs : 
@@ -34,7 +34,7 @@ jobs :
         run: python --version
 
       - name: Run a first job
-        run: python $file $d
+        run: python first.py
       # - name: Trigger message
       #   run: echo $msg
 

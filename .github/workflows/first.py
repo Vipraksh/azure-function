@@ -1,2 +1,2 @@
-num1=input
-print(num1)
+a=2
+print(a)
