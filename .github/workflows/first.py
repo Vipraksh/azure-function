@@ -1,3 +1,2 @@
-a=2
-b=5
-print(a)
+num1=input
+print(num1)
