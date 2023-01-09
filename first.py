@@ -1,2 +1,4 @@
-num1 = input("enter value")
-print(num1)
+import os
+nums = os.environ["num1"]
+num = int(nums)
+print(num)
