@@ -27,9 +27,9 @@ on :
 
 env :
 
-  bucket : aarushi-backend2
+  # bucket : aarushi-backend2
 
-  tfstate_file : terraform.tfstate
+  # tfstate_file : terraform.tfstate
 
   region: ${{ github.event.inputs.region }}
 
@@ -88,127 +88,135 @@ jobs :
           cd module
 
           terraform plan 
+
+      - name: terraform apply
+
+        run: |
+
+          cd module
+
+          terraform apply -auto-approve
          
      
   
-  job2 :
+  # job2 :
     
 
-    runs-on : ubuntu-latest
+  #   runs-on : ubuntu-latest
 
 
 
-    steps:
+  #   steps:
 
-      - uses: actions/checkout@v3
+  #     - uses: actions/checkout@v3
 
-      - name: Terraform hashicorp setup
+  #     - name: Terraform hashicorp setup
 
-        uses: hashicorp/setup-terraform@v2
+  #       uses: hashicorp/setup-terraform@v2
 
-        with:
+  #       with:
 
-          terraform_version: 1.1.7
-
-
-
-      - name: Configure AWS Credentials
-
-        uses: aws-actions/configure-aws-credentials@v1
-
-        with:
-
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
-          aws-region: ${{ env.region }}
+  #         terraform_version: 1.1.7
 
 
-      - name: terraform init
 
-        run: |
+  #     - name: Configure AWS Credentials
 
-          cd module
+  #       uses: aws-actions/configure-aws-credentials@v1
 
-          terraform init
+  #       with:
 
-      - name: terraform apply
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
 
-        run: |
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-          cd module
+  #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
-          terraform apply -auto-approve
+  #         aws-region: ${{ env.region }}
 
 
-  job3 :
+  #     - name: terraform init
+
+  #       run: |
+
+  #         cd module
+
+  #         terraform init
+
+  #     - name: terraform apply
+
+  #       run: |
+
+  #         cd module
+
+  #         terraform apply -auto-approve
+
+
+  # job3 :
     
 
-    runs-on : ubuntu-latest
+  #   runs-on : ubuntu-latest
 
 
 
-    steps:
+  #   steps:
 
-      - uses: actions/checkout@v3
+  #     - uses: actions/checkout@v3
 
-      - name: Terraform hashicorp setup
+  #     - name: Terraform hashicorp setup
 
-        uses: hashicorp/setup-terraform@v2
+  #       uses: hashicorp/setup-terraform@v2
 
-        with:
+  #       with:
 
-          terraform_version: 1.1.7
-
-
-
-      - name: Configure AWS Credentials
-
-        uses: aws-actions/configure-aws-credentials@v1
-
-        with:
-
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
-          aws-region: ${{ env.region }}
+  #         terraform_version: 1.1.7
 
 
 
-      - name: terraform init
+  #     - name: Configure AWS Credentials
 
-        run: |
+  #       uses: aws-actions/configure-aws-credentials@v1
 
-          cd module
+  #       with:
 
-          terraform init -reconfigure -backend-config="bucket=${{ env.bucket }}" -backend-config="key=${{ env.tfstate_file}}" 
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+
+  #         aws-region: ${{ env.region }}
+
+
+
+  #     - name: terraform init
+
+  #       run: |
+
+  #         cd module
+
+  #         terraform init -reconfigure -backend-config="bucket=${{ env.bucket }}" -backend-config="key=${{ env.tfstate_file}}" 
 
       
-      - name: terraform plan
+  #     - name: terraform plan
 
-        run: |
+  #       run: |
 
-          cd module
+  #         cd module
 
-          terraform plan
+  #         terraform plan
 
-      - name: terraform apply
+  #     - name: terraform apply
 
-        run: |
+  #       run: |
 
-          cd module
+  #         cd module
 
-          terraform apply -auto-approve
+  #         terraform apply -auto-approve
 
   job4 :
     
-    needs : job2
+    needs : job1
 
     runs-on : ubuntu-latest
 
