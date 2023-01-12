@@ -27,9 +27,9 @@ on :
 
 env :
 
-  # bucket : aarushi-backend2
+  bucket : aarushi-backend2
 
-  # tfstate_file : terraform.tfstate
+  tfstate_file : terraform.tfstate
 
   region: ${{ github.event.inputs.region }}
 
@@ -79,7 +79,7 @@ jobs :
 
           cd module
 
-          terraform init 
+          terraform init -reconfigure -backend-config="bucket=${{ env.bucket }}" -backend-config="key=${{ env.tfstate_file}}" 
 
       - name: terraform plan
 
