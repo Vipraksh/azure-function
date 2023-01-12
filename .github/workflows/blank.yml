@@ -80,6 +80,7 @@ jobs :
           cd module
 
           terraform init -reconfigure 
+
       - name: terraform plan
 
         run: |
@@ -99,6 +100,7 @@ jobs :
      
   
   job2 :
+  
     needs : job1
     
 
