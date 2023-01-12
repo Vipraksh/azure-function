@@ -77,7 +77,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform init 
          
@@ -85,7 +85,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform plan
 
@@ -93,7 +93,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform apply 
 
@@ -138,7 +138,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform init -reconfigure -backend-config="bucket=${{ env.bucket }}" -backend-config="key=${{ env.tfstate_file}}"
 
@@ -147,7 +147,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform plan
 
@@ -155,7 +155,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform apply
 
@@ -200,7 +200,7 @@ jobs :
 
         run: |
 
-          cd ../
+          cd module
 
           terraform destroy
              
