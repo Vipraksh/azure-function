@@ -154,51 +154,51 @@ jobs :
 
 
 
-jobs :
+# jobs :
 
-  job4 :
+#   job4 :
     
-    runs-on : ubuntu-latest
+#     runs-on : ubuntu-latest
 
 
 
-    steps:
+#     steps:
 
-      - uses: actions/checkout@v3
+#       - uses: actions/checkout@v3
 
-      - name: Terraform hashicorp setup
+#       - name: Terraform hashicorp setup
 
-        uses: hashicorp/setup-terraform@v2
+#         uses: hashicorp/setup-terraform@v2
 
-        with:
+#         with:
 
-          terraform_version: 1.1.7
-
-
-
-      - name: Configure AWS Credentials
-
-        uses: aws-actions/configure-aws-credentials@v1
-
-        with:
-
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
-          aws-region: ${{ env.region }}
+#           terraform_version: 1.1.7
 
 
 
-      - name: terraform destroy
+#       - name: Configure AWS Credentials
 
-        run: |
+#         uses: aws-actions/configure-aws-credentials@v1
 
-          cd module
+#         with:
 
-          terraform destroy -auto-approve
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+#           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+
+#           aws-region: ${{ env.region }}
+
+
+
+#       - name: terraform destroy
+
+#         run: |
+
+#           cd module
+
+#           terraform destroy -auto-approve
 
 
 
