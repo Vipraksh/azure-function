@@ -27,7 +27,7 @@ on :
 
 env :
 
-  bucket : aarushi-backend2
+  bucket : teststorage1983
 
   tfstate_file : terraform.tfstate
 
@@ -100,7 +100,7 @@ jobs :
      
   
   job2 :
-  
+
     needs : job1
     
 
