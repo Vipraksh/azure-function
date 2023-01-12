@@ -80,6 +80,14 @@ jobs :
           cd module
 
           terraform init 
+
+      - name: terraform plan
+
+        run: |
+
+          cd module
+
+          terraform plan 
          
      
   
@@ -120,7 +128,7 @@ jobs :
           aws-region: ${{ env.region }}
 
 
-      - name: terraform plan
+      - name: terraform init
 
         run: |
 
