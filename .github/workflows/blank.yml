@@ -99,6 +99,7 @@ jobs :
      
   
   job2 :
+    needs : job2
     
 
     runs-on : ubuntu-latest
