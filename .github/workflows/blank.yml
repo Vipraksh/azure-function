@@ -99,7 +99,7 @@ jobs :
      
   
   job2 :
-    needs : job2
+    needs : job1
     
 
     runs-on : ubuntu-latest
@@ -153,113 +153,52 @@ jobs :
           terraform apply -auto-approve
 
 
-  # job3 :
+
+jobs :
+
+  job4 :
     
-
-  #   runs-on : ubuntu-latest
-
-
-
-  #   steps:
-
-  #     - uses: actions/checkout@v3
-
-  #     - name: Terraform hashicorp setup
-
-  #       uses: hashicorp/setup-terraform@v2
-
-  #       with:
-
-  #         terraform_version: 1.1.7
+    runs-on : ubuntu-latest
 
 
 
-  #     - name: Configure AWS Credentials
+    steps:
 
-  #       uses: aws-actions/configure-aws-credentials@v1
+      - uses: actions/checkout@v3
 
-  #       with:
+      - name: Terraform hashicorp setup
 
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        uses: hashicorp/setup-terraform@v2
 
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:
 
-  #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
-  #         aws-region: ${{ env.region }}
+          terraform_version: 1.1.7
 
 
 
-  #     - name: terraform init
+      - name: Configure AWS Credentials
 
-  #       run: |
+        uses: aws-actions/configure-aws-credentials@v1
 
-  #         cd module
+        with:
 
-  #         terraform init -reconfigure -backend-config="bucket=${{ env.bucket }}" -backend-config="key=${{ env.tfstate_file}}" 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
 
-      
-  #     - name: terraform plan
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  #       run: |
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
-  #         cd module
-
-  #         terraform plan
-
-  #     - name: terraform apply
-
-  #       run: |
-
-  #         cd module
-
-  #         terraform apply -auto-approve
-
-  # job4 :
-    
-  #   needs : job1
-
-  #   runs-on : ubuntu-latest
+          aws-region: ${{ env.region }}
 
 
 
-  #   steps:
+      - name: terraform destroy
 
-  #     - uses: actions/checkout@v3
+        run: |
 
-  #     - name: Terraform hashicorp setup
+          cd module
 
-  #       uses: hashicorp/setup-terraform@v2
-
-  #       with:
-
-  #         terraform_version: 1.1.7
-
-
-
-  #     - name: Configure AWS Credentials
-
-  #       uses: aws-actions/configure-aws-credentials@v1
-
-  #       with:
-
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-  #         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-
-  #         aws-region: ${{ env.region }}
-
-
-
-  #     - name: terraform destroy
-
-  #       run: |
-
-  #         cd module
-
-  #         terraform destroy -auto-approve
+          terraform destroy -auto-approve
 
 
 
