@@ -133,7 +133,7 @@ jobs :
 
           cd module
 
-          terraform plan
+          terraform init
 
       - name: terraform apply
 
